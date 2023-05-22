@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router() 
 const Mahasiswa = require('../models/Mahasiswa')
 
-// Create 
+// Create api untuk mahasiswa
 router.post('/', async(req, res) => {
     // tampung input mahasiswa 
     const mahasiswaPost = new Mahasiswa({
@@ -21,5 +21,16 @@ router.post('/', async(req, res) => {
         res.json({message: error})
     }
 })
+
+//Read
+router.get('/',async(req, res) => {
+    try{
+        const mahasiswa = await Mahasiswa.find()
+        res.json(mahasiswa)
+    }catch (error){
+        res.json({message: error})
+    }
+})
+
 
 module.exports = router
